@@ -93,10 +93,6 @@ void	ft_psw_solve_rec(t_psw *psw, t_chunk *chunk)
 	t_partition	partition;
 
 	ft_bzero(&partition, sizeof(t_partition));
-	if (chunk->loc == BOTTOM_A && psw->stk_a.size == chunk->size)
-		chunk->loc = TOP_A;
-	if (chunk->loc == BOTTOM_B && psw->stk_b.size == chunk->size)
-		chunk->loc = TOP_B;
 	if (chunk->size <= 3)
 	{
 		if (chunk->size == 3)
@@ -111,11 +107,6 @@ void	ft_psw_solve_rec(t_psw *psw, t_chunk *chunk)
 	ft_psw_solve_rec(psw, &partition.max);
 	ft_psw_solve_rec(psw, &partition.mid);
 	ft_psw_solve_rec(psw, &partition.min);
-}
-
-void	ft_test(t_psw *psw, t_chunk *chunk)
-{
-	ft_chunk_sort_three(psw, chunk);
 }
 
 void	ft_psw_solve(t_psw *psw)
