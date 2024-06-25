@@ -64,9 +64,6 @@ void	ft_chunk_partition(t_psw *psw, t_chunk *chunk, t_partition *partition)
 	int	max;
 
 	ft_init_partition(partition, chunk->loc);
-	partition->mid.size = 0;
-	partition->min.size = 0;
-	partition->max.size = 0;
 	h_pivot = chunk->size / 3;
 	m_pivot = h_pivot * 2;
 	max = ft_chunk_max_value(psw, chunk);
@@ -95,6 +92,7 @@ void	ft_psw_solve_rec(t_psw *psw, t_chunk *chunk)
 {
 	t_partition	partition;
 
+	ft_bzero(&partition, sizeof(t_partition));
 	if (chunk->loc == BOTTOM_A && psw->stk_a.size == chunk->size)
 		chunk->loc = TOP_A;
 	if (chunk->loc == BOTTOM_B && psw->stk_b.size == chunk->size)
@@ -102,25 +100,17 @@ void	ft_psw_solve_rec(t_psw *psw, t_chunk *chunk)
 	if (chunk->size <= 3)
 	{
 		if (chunk->size == 3)
-		{
 			ft_chunk_sort_three(psw, chunk);
-		}
 		else if (chunk->size == 2)
-		{
 			ft_chunk_sort_two(psw, chunk);
-		}
 		else
-		{
 			ft_chunk_sort_single(psw, chunk);
-		}
+		return ; 
 	}
-	else
-	{
-		ft_chunk_partition(psw, chunk, &partition);
-		ft_psw_solve_rec(psw, &partition.max);
-		ft_psw_solve_rec(psw, &partition.mid);
-		ft_psw_solve_rec(psw, &partition.min);
-	}
+	ft_chunk_partition(psw, chunk, &partition);
+	ft_psw_solve_rec(psw, &partition.max);
+	ft_psw_solve_rec(psw, &partition.mid);
+	ft_psw_solve_rec(psw, &partition.min);
 }
 
 void	ft_test(t_psw *psw, t_chunk *chunk)
