@@ -21,23 +21,25 @@ void	ft_stack_print(t_stack *stack, t_stack *s2)
 	head = stack->head;
 	while (head)
 	{
-		ft_printf("[%d, %d] ", head->content, head->pos);
+		printf("%d ", head->content);
 		head = head->next;
 	}
-	ft_printf(" | ");
+	printf(" | ");
 	head = s2->head;
 	while (head)
 	{
-		ft_printf("[%d, %d] ", head->content, head->pos);
+		printf("%d ", head->content);
 		head = head->next;
 	}
-	ft_printf("\n");
+	printf("\n");
 }
 
 int	ft_stack_get_value(t_stack *stack, int pos)
 {
 	t_stack_node	*node;
 
+	if (!stack->size)
+		return (-1);
 	node = ft_stack_get_node(stack, pos);
 	return (node->content);
 }

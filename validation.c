@@ -8,7 +8,9 @@ static int	ft_check_duplicate(t_stack *s, int node_ctt)
 	while (head)
 	{
 		if (head->content == node_ctt)
+		{
 			return (1);
+		}
 		head = head->next;
 	}
 	return (0);
@@ -83,7 +85,9 @@ int	ft_check_args(t_stack *stack, char *av[], int args_size)
 	if (args_size > 1)
 		return (ft_check_args_multiple(stack, &av[1]));
 	if (!av[1] || !ft_strlen(av[1]))
+	{
 		return (0);
+	}
 	while (*av[1])
 	{
 		while (ft_isspace(*av[1]))
