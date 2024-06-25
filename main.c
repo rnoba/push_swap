@@ -10,6 +10,8 @@ int main(int ac, char *av[])
 	//ft_stack_print(&psw.stk_a, &psw.stk_b);
 	ft_psw_solve(&psw);
 	t_list *head = psw.mv_lst;
+	t_list *next = NULL; 
+	int opt = 0;
 	while (head)
 	{
 		if (head->content)
@@ -18,7 +20,6 @@ int main(int ac, char *av[])
 		}
 		head = head->next;
 	}
-	//ft_stack_print(&psw.stk_a, &psw.stk_b);
 	ft_stack_destroy(&psw.stk_a);
 	ft_lstclear(&psw.mv_lst, free);
 }
