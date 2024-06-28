@@ -23,8 +23,6 @@ void	ft_stack_swap(t_stack *stack)
 
 	head = ft_stack_pop(stack);
 	new_head = ft_stack_pop(stack);
-	if (new_head->content == -1)
-		return ;
 	ft_stack_push(stack, head);
 	ft_stack_push(stack, new_head);
 }

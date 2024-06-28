@@ -28,6 +28,19 @@ void	ft_sort_three(t_psw *psw)
 	}
 }
 
+void	ft_sort_two(t_psw *psw)
+{
+	int	n[2];
+
+	if (psw->stk_a.size == 2)
+	{
+		n[0] = ft_stack_get_value(&psw->stk_a, 0);
+		n[1] = ft_stack_get_value(&psw->stk_a, 1);
+		if (n[0] > n[1])
+			ft_sa(psw);
+	}
+}
+
 void	ft_init_partition(t_partition *p, e_stk_loc loc)
 {
 	if (loc == TOP_A)
@@ -117,11 +130,15 @@ void	ft_psw_solve(t_psw *psw)
 	chunk.loc = TOP_A;
 	if (psw->stk_a.size <= 5)
 	{
-		if (psw->stk_a.size == 3)
+		if (psw->stk_a.size == 5)
+		{
+			//TODO(rnoba): sort 5
+		}
+		else if (psw->stk_a.size == 3)
 			ft_sort_three(psw);
+		else if (psw->stk_a.size == 2)
+			ft_sort_two(psw);
 	}
 	else
-	{
 		ft_psw_solve_rec(psw, &chunk);
-	}
 }

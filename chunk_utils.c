@@ -20,7 +20,7 @@ int	ft_chunk_get_value(t_psw *psw, t_chunk *chunk, int pos)
 		}
 		else
 		{
-			if (size == stack->size == 0)
+			if (size == 0)
 				size = stack->size - 1;
 			else
 				size -= 1;
